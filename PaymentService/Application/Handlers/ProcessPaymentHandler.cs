@@ -73,18 +73,6 @@ namespace PaymentService.Application.Handlers
 
             try
             {
-                // Payment kaydı oluşturuyoruz
-                var payment = new Payment
-                {
-                    Id = Guid.NewGuid(),
-                    OrderId = request.OrderId,
-                    Amount = request.Amount,
-                    Status = "Pending"
-                };
-
-                _db.Payments.Add(payment);
-                await _unitOfWork.SaveAsync(cancellationToken);
-
                 var failureReason = request.Amount <= 0
                     ? "Geçersiz ödeme tutarı"
                     : request.Quantity <= 0
@@ -94,6 +82,19 @@ namespace PaymentService.Application.Handlers
                             : request.OrderId == Guid.Empty
                                 ? "Geçersiz sipariş"
                                 : null;
+
+                // Payment kaydı oluşturuyoruz
+                var payment = new Payment
+                {
+                    Id = Guid.NewGuid(),
+                    OrderId = request.OrderId,
+                    Amount = request.Amount,
+                    Status = failureReason is null ? "Pending" : "Failed",
+                    FailureReason = failureReason
+                };
+
+                _db.Payments.Add(payment);
+                await _unitOfWork.SaveAsync(cancellationToken);
 
                 if (failureReason is null)
                 {
@@ -136,9 +137,6 @@ namespace PaymentService.Application.Handlers
                 else
                 {
                     // Başarısız olursa
-                    payment.Status = "Failed";
-                    payment.FailureReason = failureReason;
-
                     // Başarısızlık event'i üretelim (Stock Service dinleyip stoğu geri yükleyecek)
                     var failEvent = new PaymentFailedEvent(
                         request.OrderId,

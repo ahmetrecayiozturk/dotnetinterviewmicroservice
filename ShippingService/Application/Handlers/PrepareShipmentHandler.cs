@@ -73,21 +73,6 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
 
         try
         {
-            // Takip numarası üret
-            var trackingNumber = $"TRK-{Guid.NewGuid().ToString()[..8].ToUpper()}";
-
-            // Yeni shipment kaydı oluştur
-            var shipment = new Shipment
-            {
-                Id = Guid.NewGuid(),
-                OrderId = request.OrderId,
-                TrackingNumber = trackingNumber,
-                Status = "Preparing"
-            };
-
-            _dbContext.Shipments.Add(shipment);
-            await _unitOfWork.SaveAsync(cancellationToken);
-
             var failureReason = request.PaymentId == Guid.Empty
                 ? "Geçersiz ödeme bilgisi"
                 : request.Quantity <= 0
@@ -97,6 +82,20 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
                         : request.OrderId == Guid.Empty
                             ? "Geçersiz sipariş"
                             : null;
+
+            // Yeni shipment kaydı oluştur
+            var shipment = new Shipment
+            {
+                Id = Guid.NewGuid(),
+                OrderId = request.OrderId,
+                TrackingNumber = failureReason is null
+                    ? $"TRK-{Guid.NewGuid().ToString()[..8].ToUpper()}"
+                    : string.Empty,
+                Status = failureReason is null ? "Preparing" : "Failed"
+            };
+
+            _dbContext.Shipments.Add(shipment);
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             if (failureReason is null)
             {
@@ -108,7 +107,7 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
 
                 var shippingPreparedEvent = new ShippingPreparedEvent(
                     request.OrderId,
-                    trackingNumber)
+                    shipment.TrackingNumber)
                 {
                     CorrelationId = request.CorrelationId
                 };
@@ -127,7 +126,7 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
 
                 _logger.LogInformation(
                     "✅ [SHIPPING] [{CorrelationId}] Kargo hazır: OrderId={OrderId}, Tracking={TrackingNumber}",
-                    request.CorrelationId, request.OrderId, trackingNumber);
+                    request.CorrelationId, request.OrderId, shipment.TrackingNumber);
 
                 return true;
             }
