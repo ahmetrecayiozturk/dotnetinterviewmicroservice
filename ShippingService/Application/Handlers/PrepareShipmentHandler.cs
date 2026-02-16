@@ -73,15 +73,7 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
 
         try
         {
-            var failureReason = request.PaymentId == Guid.Empty
-                ? "Geçersiz ödeme bilgisi"
-                : request.Quantity <= 0
-                    ? "Geçersiz ürün adedi"
-                    : request.ProductId == Guid.Empty
-                        ? "Geçersiz ürün"
-                        : request.OrderId == Guid.Empty
-                            ? "Geçersiz sipariş"
-                            : null;
+            var failureReason = GetFailureReason(request);
 
             // Yeni shipment kaydı oluştur
             var shipment = new Shipment
@@ -174,6 +166,31 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
             await _unitOfWork.RollbackAsync(cancellationToken);
             throw;
         }
+    }
+
+    private static string? GetFailureReason(PrepareShipmentCommand request)
+    {
+        if (request.PaymentId == Guid.Empty)
+        {
+            return "Geçersiz ödeme bilgisi";
+        }
+
+        if (request.Quantity <= 0)
+        {
+            return "Geçersiz ürün adedi";
+        }
+
+        if (request.ProductId == Guid.Empty)
+        {
+            return "Geçersiz ürün";
+        }
+
+        if (request.OrderId == Guid.Empty)
+        {
+            return "Geçersiz sipariş";
+        }
+
+        return null;
     }
 }
 

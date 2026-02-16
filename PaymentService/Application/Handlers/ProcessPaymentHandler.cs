@@ -73,15 +73,7 @@ namespace PaymentService.Application.Handlers
 
             try
             {
-                var failureReason = request.Amount <= 0
-                    ? "Geçersiz ödeme tutarı"
-                    : request.Quantity <= 0
-                        ? "Geçersiz ürün adedi"
-                        : request.ProductId == Guid.Empty
-                            ? "Geçersiz ürün"
-                            : request.OrderId == Guid.Empty
-                                ? "Geçersiz sipariş"
-                                : null;
+                var failureReason = GetFailureReason(request);
 
                 // Payment kaydı oluşturuyoruz
                 var payment = new Payment
@@ -177,6 +169,31 @@ namespace PaymentService.Application.Handlers
                 await _unitOfWork.RollbackAsync(cancellationToken);
                 throw;
             }
+        }
+
+        private static string? GetFailureReason(ProcessPaymentCommand request)
+        {
+            if (request.Amount <= 0)
+            {
+                return "Geçersiz ödeme tutarı";
+            }
+
+            if (request.Quantity <= 0)
+            {
+                return "Geçersiz ürün adedi";
+            }
+
+            if (request.ProductId == Guid.Empty)
+            {
+                return "Geçersiz ürün";
+            }
+
+            if (request.OrderId == Guid.Empty)
+            {
+                return "Geçersiz sipariş";
+            }
+
+            return null;
         }
     }
 }
