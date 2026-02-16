@@ -173,14 +173,9 @@ namespace PaymentService.Application.Handlers
 
         private static string? GetFailureReason(ProcessPaymentCommand request)
         {
-            if (request.Amount <= 0)
+            if (request.OrderId == Guid.Empty)
             {
-                return "Geçersiz ödeme tutarı";
-            }
-
-            if (request.Quantity <= 0)
-            {
-                return "Geçersiz ürün adedi";
+                return "Geçersiz sipariş";
             }
 
             if (request.ProductId == Guid.Empty)
@@ -188,9 +183,14 @@ namespace PaymentService.Application.Handlers
                 return "Geçersiz ürün";
             }
 
-            if (request.OrderId == Guid.Empty)
+            if (request.Quantity <= 0)
             {
-                return "Geçersiz sipariş";
+                return "Geçersiz ürün adedi";
+            }
+
+            if (request.Amount <= 0)
+            {
+                return "Geçersiz ödeme tutarı";
             }
 
             return null;

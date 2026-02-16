@@ -170,14 +170,9 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
 
     private static string? GetFailureReason(PrepareShipmentCommand request)
     {
-        if (request.PaymentId == Guid.Empty)
+        if (request.OrderId == Guid.Empty)
         {
-            return "Geçersiz ödeme bilgisi";
-        }
-
-        if (request.Quantity <= 0)
-        {
-            return "Geçersiz ürün adedi";
+            return "Geçersiz sipariş";
         }
 
         if (request.ProductId == Guid.Empty)
@@ -185,9 +180,14 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
             return "Geçersiz ürün";
         }
 
-        if (request.OrderId == Guid.Empty)
+        if (request.Quantity <= 0)
         {
-            return "Geçersiz sipariş";
+            return "Geçersiz ürün adedi";
+        }
+
+        if (request.PaymentId == Guid.Empty)
+        {
+            return "Geçersiz ödeme bilgisi";
         }
 
         return null;
