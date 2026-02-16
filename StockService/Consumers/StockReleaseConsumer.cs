@@ -49,11 +49,8 @@ public class StockReleaseConsumer :
     private async Task ReleaseStock(Guid orderId, Guid correlationId, Guid productId, int quantity, string reason)
     {
         _logger.LogWarning(
-            "📦 [STOCK] [CorrelationId={CorrelationId}] [OrderId={OrderId}] Action=StockReleaseRequested Reason={Reason}",
+            "📦 [STOCK] [CorrelationId={CorrelationId}] [OrderId={OrderId}] Action=StockReleaseRequested Reason={Reason} Message=Stok geri yükleniyor",
             correlationId, orderId, reason);
-
-        _logger.LogInformation("[STOCK-ROLLBACK] [{CorrelationId}] Stok geri yükleniyor: OrderId={OrderId}",
-            correlationId, orderId);
 
         await _unitOfWork.BeginTransactionAsync();
 
