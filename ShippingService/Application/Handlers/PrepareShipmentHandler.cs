@@ -73,33 +73,33 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
 
         try
         {
-            // Takip numarası üret
-            var trackingNumber = $"TRK-{Guid.NewGuid().ToString()[..8].ToUpper()}";
+            var failureReason = GetFailureReason(request);
 
             // Yeni shipment kaydı oluştur
             var shipment = new Shipment
             {
                 Id = Guid.NewGuid(),
                 OrderId = request.OrderId,
-                TrackingNumber = trackingNumber,
-                Status = "Preparing"
+                TrackingNumber = failureReason is null
+                    ? $"TRK-{Guid.NewGuid().ToString()[..8].ToUpper()}"
+                    : string.Empty,
+                Status = failureReason is null ? "Preparing" : "Failed"
             };
 
             _dbContext.Shipments.Add(shipment);
             await _unitOfWork.SaveAsync(cancellationToken);
 
-            // Kargo API simülasyonu (dış sistem çağrısı gibi düşün)
-            await Task.Delay(1500, cancellationToken);
-            var isSuccess = Random.Shared.Next(100) < 90;
-
-            if (isSuccess)
+            if (failureReason is null)
             {
+                // Kargo API simülasyonu (dış sistem çağrısı gibi düşün)
+                await Task.Delay(1500, cancellationToken);
+
                 shipment.Status = "Shipped";
                 shipment.ShippedAt = DateTime.UtcNow;
 
                 var shippingPreparedEvent = new ShippingPreparedEvent(
                     request.OrderId,
-                    trackingNumber)
+                    shipment.TrackingNumber)
                 {
                     CorrelationId = request.CorrelationId
                 };
@@ -118,13 +118,12 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
 
                 _logger.LogInformation(
                     "✅ [SHIPPING] [{CorrelationId}] Kargo hazır: OrderId={OrderId}, Tracking={TrackingNumber}",
-                    request.CorrelationId, request.OrderId, trackingNumber);
+                    request.CorrelationId, request.OrderId, shipment.TrackingNumber);
 
                 return true;
             }
             else
             {
-                var reason = "Kargo firması yanıt vermiyor";
                 shipment.Status = "Failed";
 
                 var shippingFailedEvent = new ShippingFailedEvent(
@@ -133,7 +132,7 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
                     request.ProductId,
                     request.Quantity,
                     request.Amount,
-                    reason)
+                    failureReason)
                 {
                     CorrelationId = request.CorrelationId
                 };
@@ -151,8 +150,8 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
                 await _unitOfWork.CommitAsync(cancellationToken);
 
                 _logger.LogWarning(
-                    "❌ [SHIPPING] [{CorrelationId}] Kargo başarısız: OrderId={OrderId}, Reason={Reason}",
-                    request.CorrelationId, request.OrderId, reason);
+                    "❌ [SHIPPING] [CorrelationId={CorrelationId}] [OrderId={OrderId}] Action=ShippingFailed Reason={Reason}",
+                    request.CorrelationId, request.OrderId, failureReason);
 
                 return false;
             }
@@ -167,6 +166,31 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
             await _unitOfWork.RollbackAsync(cancellationToken);
             throw;
         }
+    }
+
+    private static string? GetFailureReason(PrepareShipmentCommand request)
+    {
+        if (request.OrderId == Guid.Empty)
+        {
+            return "Geçersiz sipariş";
+        }
+
+        if (request.ProductId == Guid.Empty)
+        {
+            return "Geçersiz ürün";
+        }
+
+        if (request.Quantity <= 0)
+        {
+            return "Geçersiz ürün adedi";
+        }
+
+        if (request.PaymentId == Guid.Empty)
+        {
+            return "Geçersiz ödeme bilgisi";
+        }
+
+        return null;
     }
 }
 

@@ -73,24 +73,26 @@ namespace PaymentService.Application.Handlers
 
             try
             {
+                var failureReason = GetFailureReason(request);
+
                 // Payment kaydı oluşturuyoruz
                 var payment = new Payment
                 {
                     Id = Guid.NewGuid(),
                     OrderId = request.OrderId,
                     Amount = request.Amount,
-                    Status = "Pending"
+                    Status = failureReason is null ? "Pending" : "Failed",
+                    FailureReason = failureReason
                 };
 
                 _db.Payments.Add(payment);
                 await _unitOfWork.SaveAsync(cancellationToken);
 
-                // 1 saniye cevap süresi bekleyelim ve yüzde 80 başarılı olsun diyelim
-                await Task.Delay(1000, cancellationToken);
-                var success = Random.Shared.Next(100) < 80;
-
-                if (success)
+                if (failureReason is null)
                 {
+                    // 1 saniye cevap süresi bekleyelim (demo amaçlı)
+                    await Task.Delay(1000, cancellationToken);
+
                     // Başarılı olarak güncelleyelim
                     payment.Status = "Completed";
                     payment.CompletedAt = DateTime.UtcNow;
@@ -127,16 +129,12 @@ namespace PaymentService.Application.Handlers
                 else
                 {
                     // Başarısız olursa
-                    var reason = "Kart reddedildi";
-                    payment.Status = "Failed";
-                    payment.FailureReason = reason;
-
                     // Başarısızlık event'i üretelim (Stock Service dinleyip stoğu geri yükleyecek)
                     var failEvent = new PaymentFailedEvent(
                         request.OrderId,
                         request.ProductId,
                         request.Quantity,
-                        reason
+                        failureReason
                     )
                     {
                         CorrelationId = request.CorrelationId
@@ -154,8 +152,8 @@ namespace PaymentService.Application.Handlers
                     await _unitOfWork.CommitAsync(cancellationToken);
 
                     _logger.LogWarning(
-                        "❌ [PAYMENT] [{CorrelationId}] Ödeme başarısız: OrderId={OrderId}, Reason={Reason}",
-                        request.CorrelationId, request.OrderId, reason);
+                        "❌ [PAYMENT] [CorrelationId={CorrelationId}] [OrderId={OrderId}] Action=PaymentFailed Reason={Reason}",
+                        request.CorrelationId, request.OrderId, failureReason);
 
                     return false;
                 }
@@ -171,6 +169,31 @@ namespace PaymentService.Application.Handlers
                 await _unitOfWork.RollbackAsync(cancellationToken);
                 throw;
             }
+        }
+
+        private static string? GetFailureReason(ProcessPaymentCommand request)
+        {
+            if (request.OrderId == Guid.Empty)
+            {
+                return "Geçersiz sipariş";
+            }
+
+            if (request.ProductId == Guid.Empty)
+            {
+                return "Geçersiz ürün";
+            }
+
+            if (request.Quantity <= 0)
+            {
+                return "Geçersiz ürün adedi";
+            }
+
+            if (request.Amount <= 0)
+            {
+                return "Geçersiz ödeme tutarı";
+            }
+
+            return null;
         }
     }
 }
