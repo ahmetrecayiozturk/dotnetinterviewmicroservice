@@ -1,0 +1,137 @@
+services:
+  # ==========================
+  # SQL SERVER
+  # ==========================
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: ecommerce-sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Pass@word123!
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - dotnetmicroserviceinterview_sqlserver_data:/var/opt/mssql
+    networks:
+      - ecommerce-network
+
+  # ==========================
+  # RABBITMQ
+  # ==========================
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: ecommerce-rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - dotnetmicroserviceinterview_rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmq-diagnostics -q ping || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ==========================
+  # STOCK SERVICE
+  # ==========================
+  stockservice:
+    build:
+      context: .
+      dockerfile: StockService/Dockerfile
+    container_name: ecommerce-stockservice
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=StockDb;User Id=sa;Password=Pass@word123!;TrustServerCertificate=True;ConnectRetryCount=10;ConnectRetryInterval=5
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    networks:
+      - ecommerce-network
+    restart: on-failure
+
+  # ==========================
+  # PAYMENT SERVICE
+  # ==========================
+  paymentservice:
+    build:
+      context: .
+      dockerfile: PaymentService/Dockerfile
+    container_name: ecommerce-paymentservice
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=PaymentDb;User Id=sa;Password=Pass@word123!;TrustServerCertificate=True;ConnectRetryCount=10;ConnectRetryInterval=5
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    networks:
+      - ecommerce-network
+    restart: on-failure
+
+  # ==========================
+  # SHIPPING SERVICE
+  # ==========================
+  shippingservice:
+    build:
+      context: .
+      dockerfile: ShippingService/Dockerfile
+    container_name: ecommerce-shippingservice
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=ShippingDb;User Id=sa;Password=Pass@word123!;TrustServerCertificate=True;ConnectRetryCount=10;ConnectRetryInterval=5
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    networks:
+      - ecommerce-network
+    restart: on-failure
+
+  # ==========================
+  # API GATEWAY
+  # ==========================
+  apigateway:
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    container_name: ecommerce-apigateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=GatewayDb;User Id=sa;Password=Pass@word123!;TrustServerCertificate=True;ConnectRetryCount=10;ConnectRetryInterval=5
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+    ports:
+      - "5000:80"
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    networks:
+      - ecommerce-network
+    restart: on-failure
+
+volumes:
+  dotnetmicroserviceinterview_sqlserver_data:
+  dotnetmicroserviceinterview_rabbitmq_data:
+
+networks:
+  ecommerce-network:
+    driver: bridge

@@ -1,0 +1,253 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{00F1F3D4-B133-4B33-A1C3-B550ADA3A197}|ApiGateway\\ApiGateway.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\apigateway\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{00F1F3D4-B133-4B33-A1C3-B550ADA3A197}|ApiGateway\\ApiGateway.csproj|solutionrelative:apigateway\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00F1F3D4-B133-4B33-A1C3-B550ADA3A197}|ApiGateway\\ApiGateway.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\apigateway\\apigateway.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{00F1F3D4-B133-4B33-A1C3-B550ADA3A197}|ApiGateway\\ApiGateway.csproj|solutionrelative:apigateway\\apigateway.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCC2A7B8-1B53-4A14-B9B8-471ECE027683}|StockService\\StockService.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\stockservice\\stockservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{DCC2A7B8-1B53-4A14-B9B8-471ECE027683}|StockService\\StockService.csproj|solutionrelative:stockservice\\stockservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EEC51ED-ED5A-42CB-903D-8A76FEC9A3B4}|ShippingService\\ShippingService.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\shippingservice\\shippingservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5EEC51ED-ED5A-42CB-903D-8A76FEC9A3B4}|ShippingService\\ShippingService.csproj|solutionrelative:shippingservice\\shippingservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DE89DD2-C66B-4F4D-AD7E-B2819F71ED52}|PaymentService\\PaymentService.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\paymentservice\\paymentservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{9DE89DD2-C66B-4F4D-AD7E-B2819F71ED52}|PaymentService\\PaymentService.csproj|solutionrelative:paymentservice\\paymentservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCC2A7B8-1B53-4A14-B9B8-471ECE027683}|StockService\\StockService.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\stockservice\\infrastructure\\stockdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCC2A7B8-1B53-4A14-B9B8-471ECE027683}|StockService\\StockService.csproj|solutionrelative:stockservice\\infrastructure\\stockdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCC2A7B8-1B53-4A14-B9B8-471ECE027683}|StockService\\StockService.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\stockservice\\domain\\ordersagastate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCC2A7B8-1B53-4A14-B9B8-471ECE027683}|StockService\\StockService.csproj|solutionrelative:stockservice\\domain\\ordersagastate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC80F682-3D55-C8F8-4895-A4A9EDD49434}|\u00C7\u00F6z\u00FCm \u00D6\u011Feleri{AC80F682-3D55-C8F8-4895-A4A9EDD49434}|D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{AC80F682-3D55-C8F8-4895-A4A9EDD49434}|\u00C7\u00F6z\u00FCm \u00D6\u011Feleri{AC80F682-3D55-C8F8-4895-A4A9EDD49434}|solutionrelative:docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00F1F3D4-B133-4B33-A1C3-B550ADA3A197}|ApiGateway\\ApiGateway.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00F1F3D4-B133-4B33-A1C3-B550ADA3A197}|ApiGateway\\ApiGateway.csproj|solutionrelative:apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00F1F3D4-B133-4B33-A1C3-B550ADA3A197}|ApiGateway\\ApiGateway.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\apigateway\\consumers\\orderstatusconsumers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00F1F3D4-B133-4B33-A1C3-B550ADA3A197}|ApiGateway\\ApiGateway.csproj|solutionrelative:apigateway\\consumers\\orderstatusconsumers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EEC51ED-ED5A-42CB-903D-8A76FEC9A3B4}|ShippingService\\ShippingService.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\shippingservice\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{5EEC51ED-ED5A-42CB-903D-8A76FEC9A3B4}|ShippingService\\ShippingService.csproj|solutionrelative:shippingservice\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DE89DD2-C66B-4F4D-AD7E-B2819F71ED52}|PaymentService\\PaymentService.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\paymentservice\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9DE89DD2-C66B-4F4D-AD7E-B2819F71ED52}|PaymentService\\PaymentService.csproj|solutionrelative:paymentservice\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCC2A7B8-1B53-4A14-B9B8-471ECE027683}|StockService\\StockService.csproj|d:\\job\\mulakatprojesi\\dotnetmicroservice2\\dotnetmicroservice3\\dotnetmicroserviceinterview\\stockservice\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{DCC2A7B8-1B53-4A14-B9B8-471ECE027683}|StockService\\StockService.csproj|solutionrelative:stockservice\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApiGateway",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ApiGateway\\ApiGateway.csproj",
+              "RelativeDocumentMoniker": "ApiGateway\\ApiGateway.csproj",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ApiGateway\\ApiGateway.csproj",
+              "RelativeToolTip": "ApiGateway\\ApiGateway.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-16T13:22:42.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ShippingService",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ShippingService\\ShippingService.csproj",
+              "RelativeDocumentMoniker": "ShippingService\\ShippingService.csproj",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ShippingService\\ShippingService.csproj",
+              "RelativeToolTip": "ShippingService\\ShippingService.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-16T13:22:23.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PaymentService",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\PaymentService\\PaymentService.csproj",
+              "RelativeDocumentMoniker": "PaymentService\\PaymentService.csproj",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\PaymentService\\PaymentService.csproj",
+              "RelativeToolTip": "PaymentService\\PaymentService.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-16T13:22:05.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StockDbContext.cs",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\StockService\\Infrastructure\\StockDbContext.cs",
+              "RelativeDocumentMoniker": "StockService\\Infrastructure\\StockDbContext.cs",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\StockService\\Infrastructure\\StockDbContext.cs",
+              "RelativeToolTip": "StockService\\Infrastructure\\StockDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T13:21:38.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StockService",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\StockService\\StockService.csproj",
+              "RelativeDocumentMoniker": "StockService\\StockService.csproj",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\StockService\\StockService.csproj",
+              "RelativeToolTip": "StockService\\StockService.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-16T13:21:29.257Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "OrderSagaState.cs",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\StockService\\Domain\\OrderSagaState.cs",
+              "RelativeDocumentMoniker": "StockService\\Domain\\OrderSagaState.cs",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\StockService\\Domain\\OrderSagaState.cs",
+              "RelativeToolTip": "StockService\\Domain\\OrderSagaState.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T13:21:11.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ApiGateway\\Program.cs",
+              "RelativeDocumentMoniker": "ApiGateway\\Program.cs",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ApiGateway\\Program.cs",
+              "RelativeToolTip": "ApiGateway\\Program.cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T12:54:29.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ApiGateway\\Dockerfile",
+              "RelativeDocumentMoniker": "ApiGateway\\Dockerfile",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ApiGateway\\Dockerfile",
+              "RelativeToolTip": "ApiGateway\\Dockerfile",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-02-16T12:39:08.839Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "OrderStatusConsumers.cs",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ApiGateway\\Consumers\\OrderStatusConsumers.cs",
+              "RelativeDocumentMoniker": "ApiGateway\\Consumers\\OrderStatusConsumers.cs",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ApiGateway\\Consumers\\OrderStatusConsumers.cs",
+              "RelativeToolTip": "ApiGateway\\Consumers\\OrderStatusConsumers.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T12:54:02.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ShippingService\\Dockerfile",
+              "RelativeDocumentMoniker": "ShippingService\\Dockerfile",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\ShippingService\\Dockerfile",
+              "RelativeToolTip": "ShippingService\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-02-16T12:41:15.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\PaymentService\\Dockerfile",
+              "RelativeDocumentMoniker": "PaymentService\\Dockerfile",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\PaymentService\\Dockerfile",
+              "RelativeToolTip": "PaymentService\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-02-16T12:41:06.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\StockService\\Dockerfile",
+              "RelativeDocumentMoniker": "StockService\\Dockerfile",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\StockService\\Dockerfile",
+              "RelativeToolTip": "StockService\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-02-16T12:40:56.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "docker-compose.yml",
+              "DocumentMoniker": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\docker-compose.yml",
+              "RelativeDocumentMoniker": "docker-compose.yml",
+              "ToolTip": "D:\\Job\\MulakatProjesi\\dotnetmicroservice2\\dotnetmicroservice3\\DotNetMicroserviceInterview\\docker-compose.yml",
+              "RelativeToolTip": "docker-compose.yml",
+              "ViewState": "AgIAAFgAAAAAAAAAAADwv3QAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2026-02-16T12:39:46.171Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
