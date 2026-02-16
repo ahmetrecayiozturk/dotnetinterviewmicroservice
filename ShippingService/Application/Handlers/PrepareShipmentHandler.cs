@@ -88,12 +88,21 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
             _dbContext.Shipments.Add(shipment);
             await _unitOfWork.SaveAsync(cancellationToken);
 
-            // Kargo API simülasyonu (dış sistem çağrısı gibi düşün)
-            await Task.Delay(1500, cancellationToken);
-            var isSuccess = Random.Shared.Next(100) < 90;
+            var failureReason = request.PaymentId == Guid.Empty
+                ? "Geçersiz ödeme bilgisi"
+                : request.Quantity <= 0
+                    ? "Geçersiz ürün adedi"
+                    : request.ProductId == Guid.Empty
+                        ? "Geçersiz ürün"
+                        : request.OrderId == Guid.Empty
+                            ? "Geçersiz sipariş"
+                            : null;
 
-            if (isSuccess)
+            if (failureReason is null)
             {
+                // Kargo API simülasyonu (dış sistem çağrısı gibi düşün)
+                await Task.Delay(1500, cancellationToken);
+
                 shipment.Status = "Shipped";
                 shipment.ShippedAt = DateTime.UtcNow;
 
@@ -124,7 +133,6 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
             }
             else
             {
-                var reason = "Kargo firması yanıt vermiyor";
                 shipment.Status = "Failed";
 
                 var shippingFailedEvent = new ShippingFailedEvent(
@@ -133,7 +141,7 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
                     request.ProductId,
                     request.Quantity,
                     request.Amount,
-                    reason)
+                    failureReason)
                 {
                     CorrelationId = request.CorrelationId
                 };
@@ -151,8 +159,8 @@ public class PrepareShipmentHandler : IRequestHandler<PrepareShipmentCommand, bo
                 await _unitOfWork.CommitAsync(cancellationToken);
 
                 _logger.LogWarning(
-                    "❌ [SHIPPING] [{CorrelationId}] Kargo başarısız: OrderId={OrderId}, Reason={Reason}",
-                    request.CorrelationId, request.OrderId, reason);
+                    "❌ [SHIPPING] [CorrelationId={CorrelationId}] [OrderId={OrderId}] Action=ShippingFailed Reason={Reason}",
+                    request.CorrelationId, request.OrderId, failureReason);
 
                 return false;
             }

@@ -48,6 +48,10 @@ public class StockReleaseConsumer :
 
     private async Task ReleaseStock(Guid orderId, Guid correlationId, Guid productId, int quantity, string reason)
     {
+        _logger.LogWarning(
+            "📦 [STOCK] [CorrelationId={CorrelationId}] [OrderId={OrderId}] Action=StockReleaseRequested Reason={Reason}",
+            correlationId, orderId, reason);
+
         _logger.LogInformation("[STOCK-ROLLBACK] [{CorrelationId}] Stok geri yükleniyor: OrderId={OrderId}",
             correlationId, orderId);
 
@@ -83,8 +87,9 @@ public class StockReleaseConsumer :
 
                 await _unitOfWork.CommitAsync();
 
-                _logger.LogInformation("[STOCK-ROLLBACK] [{CorrelationId}] Stok geri yüklendi: {Product}, Yeni Miktar={Quantity}",
-                    correlationId, product.Name, product.Quantity);
+                _logger.LogInformation(
+                    "✅ [STOCK] [CorrelationId={CorrelationId}] [OrderId={OrderId}] Action=StockReleased Product={Product} NewQuantity={Quantity}",
+                    correlationId, orderId, product.Name, product.Quantity);
             }
         }
         catch (Exception ex)
